@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
         } else {
             $result =  $select->fetch_object();
             $_SESSION['name'] = $result->userName;
-            header("location:/vancepos");
+            header("location:/vance");
         }
     }
 }

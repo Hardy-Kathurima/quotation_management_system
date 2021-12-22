@@ -8,7 +8,7 @@ $output = $contactPerson = $location = $email = $region = null;
 if (isset($_GET['customerId'])) {
     // $item = $db->real_escape_string($_POST['item']);
     $id = $_GET['customerId'];
-    $select = $db->query("SELECT * FROM customers WHERE customerId = '$id' ");
+    $select = $db->query("SELECT * FROM customers WHERE id = '$id' ");
 
     $customersArray = array();
     if ($select->num_rows > 0) {

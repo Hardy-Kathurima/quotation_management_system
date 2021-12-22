@@ -16,7 +16,7 @@ if (isset($_POST['customer'])) {
     </tr>
 </thead>';
 
-    $select = $db->query("SELECT * FROM orders WHERE customerName='$customer' ORDER BY id ");
+    $select = $db->query("SELECT * FROM orders WHERE customerName='$customer' ORDER BY quotationId ");
 
     if ($select->num_rows > 0) {
         while ($row = $select->fetch_object()) {
@@ -26,7 +26,7 @@ if (isset($_POST['customer'])) {
             <td >' . $row->quantity . '</td>
             <td >' . $row->totalCost . '</td>
           <td>
-          <button onclick="editItem(' . $row->id . ')" type="button" class="btn btn-primary">
+          <button onclick="editItem(' . $row->quotationId . ')" type="button" class="btn btn-primary">
                    <i class="fa fa-edit icon-white"></i> Edit
                </button>
 

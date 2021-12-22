@@ -1,6 +1,6 @@
 <?php
 require '../database/connect_item.php';
-if (!isset($_SESSION)) {
+if (!isset($_SESSION['add_item'])) {
     session_start();
 }
 
@@ -27,6 +27,7 @@ if (isset($_POST['itemId'])) {
             [
                 "customerName" => $_POST['customerName'],
                 "customerPhone" => $_POST['customerPhone'],
+                "customerRef" => $_POST['customerRef'],
                 "customerLocation" => $_POST['customerLocation'],
                 "itemId" => $_POST['itemId'],
                 "quantity" => $_POST['quantity'],

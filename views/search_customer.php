@@ -9,7 +9,7 @@ if (!empty($_POST['customerName'])) {
 
 ?>
 
-            <li onClick="selectCustomer('<?php echo htmlspecialchars($customer["customerId"]); ?>', '<?php echo htmlspecialchars($customer["customerName"]); ?>');"><?php echo $customer["customerName"]; ?></li>
+            <li onClick="selectCustomer('<?php echo htmlspecialchars($customer["id"]); ?>', '<?php echo htmlspecialchars($customer["customerName"]); ?>');"><?php echo $customer["customerName"]; ?></li>
 <?php
         }
         echo "</ul>";

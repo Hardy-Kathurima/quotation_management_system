@@ -3,8 +3,6 @@ require '../database/db.php';
 session_start();
 $output = $customerPhone = $location  = null;
 
-$itemDetails = $_SESSION['add_item'];
-var_dump($itemDetails);
 
 
 if (isset($_POST['search_customer'])) {
@@ -455,6 +453,7 @@ if (isset($_POST['search_customer'])) {
             var customerName = $("#customerName").val();
             var customerPhone = $("#customerPhone").val();
             var customerLocation = $("#customerLocation").val();
+            var customerRef = $("#customerRef").val();
             var quantity = $('#quantity').val();
             var itemId = $('#setId').val();
             var itemCost = $('#itemCost').val();
@@ -463,18 +462,6 @@ if (isset($_POST['search_customer'])) {
             var additionalCost = $('#additionalCost').val();
             var itemCategory = $('#itemCategory').val();
             var totalCost = parseInt($("#quantity").val()) * parseInt($("#itemCost").val());
-
-
-            // pushing items into array
-
-            const items = [];
-
-            items.push(...[itemName, itemCost, quantity, totalCost]);
-
-            const itemArray = items;
-            console.log(items);
-
-
 
 
             $.ajax({
@@ -490,6 +477,7 @@ if (isset($_POST['search_customer'])) {
                     itemCategory: itemCategory,
                     customerLocation: customerLocation,
                     customerName: customerName,
+                    customerRef: customerRef,
                     customerPhone: customerPhone,
                     itemName: itemName,
                     totalCost: totalCost
@@ -552,9 +540,7 @@ if (isset($_POST['search_customer'])) {
                 var ref = $("#customerRef").val();
                 var location = $("#customerLocation").val();
                 var quotationNo = Math.floor(Math.random() * 100) + 1;
-                var itemDetails = '<?php echo $itemDetails; ?>'
-                var allItems = encodeURIComponent(JSON.stringify(itemDetails));
-                console.log(allItems);
+
                 var link = `save_quote.php?customer=${custom}&phone=${phone}&location=${location}&quotation=${quotationNo}&ref=${ref}`;
                 $("#savePdf").attr("href", link);
 

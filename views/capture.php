@@ -32,14 +32,38 @@ if (isset($_POST['customerName']) && isset($_POST['special'])) {
 
         // insert into orders
 
-        $stmt = $db->prepare("INSERT INTO `orders` (`customerName`,`itemName`, `itemCost`, `quantity`,`totalCost`) VALUES (?,?,?,?,?)");
-        $stmt->bind_param("ssiii", $customerName, $itemName, $itemCost, $quantity, $totalCost);
+        $stmt = $db->prepare("INSERT INTO `orders` (
+            
+            `customerName`,`customerRef`, `customerLocation`, `itemId`,`itemName`,`itemCost`,`quantity`,`additionalCost`,`deliveryCost`,`itemCategory`,`totalCost`,`salesPerson`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param(
+            "sssisiiiisis",
+
+            $customerName,
+            $customerRef,
+            $customerLocation,
+            $itemId,
+            $itemName,
+            $itemCost,
+            $quantity,
+            $additionalCost,
+            $deliveryCost,
+            $itemCategory,
+            $totalCost,
+            $salesPerson
+        );
         foreach ($_SESSION['add_item'] as $row) {
             $customerName = $row['customerName'];
             $itemName = $row['itemName'];
             $itemCost = $row['itemCost'];
             $quantity = $row['quantity'];
             $totalCost = $row['totalCost'];
+            $customerRef = $row['customerRef'];
+            $customerLocation = $row['customerLocation'];
+            $itemId = $row['itemId'];
+            $deliveryCost = $row['deliveryCost'];
+            $additionalCost = $row['additionalCost'];
+            $itemCategory = $row['itemCategory'];
+            $salesPerson = $row['salesPerson'];
 
             // add new fields
 

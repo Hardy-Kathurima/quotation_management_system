@@ -4,7 +4,7 @@ session_start();
 
 if (isset($_POST["updateId"])) {
     $order_id = $_POST['updateId'];
-    $query = "SELECT * FROM orders WHERE id ='$order_id' ";
+    $query = "SELECT * FROM orders WHERE quotationId ='$order_id' ";
     $result = $db->query($query);
 
     $itemArray = array();
