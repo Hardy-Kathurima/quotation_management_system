@@ -463,7 +463,13 @@ if (isset($_POST['search_customer'])) {
             var itemCategory = $('#itemCategory').val();
             var totalCost = parseInt($("#quantity").val()) * parseInt($("#itemCost").val());
 
-
+            var itemDetails = [];
+            var allItems = [itemName, itemCost, quantity, totalCost];
+            var all = itemDetails.concat(allItems);
+            // display all values
+            for (var i = 0; i < all.length; i++) {
+                console.log(allItems[i]);
+            }
             $.ajax({
                 type: 'post',
                 url: 'addItem.php',
