@@ -333,7 +333,7 @@ if (isset($_POST['search_customer'])) {
     <!-- <script src="../public/main.js"></script> -->
     <script>
         $(function() {
-            load_quotations();
+
 
 
 
@@ -454,14 +454,14 @@ if (isset($_POST['search_customer'])) {
             var customerPhone = $("#customerPhone").val();
             var customerLocation = $("#customerLocation").val();
             var customerRef = $("#customerRef").val();
-            var quantity = $('#quantity').val();
-            var itemId = $('#setId').val();
+            var quantity = parseInt($('#quantity').val());
+            var itemId = parseInt($('#setId').val());
             var itemCost = $('#itemCost').val();
             var deliveryCost = $('#deliveryCost').val();
             var itemName = $('#item').val();
             var additionalCost = $('#additionalCost').val();
             var itemCategory = $('#itemCategory').val();
-            var totalCost = parseInt($("#quantity").val()) * parseInt($("#itemCost").val());
+            var totalCost = quantity * parseInt($("#itemCost").val());
 
 
             $.ajax({
@@ -588,6 +588,7 @@ if (isset($_POST['search_customer'])) {
             }
 
         }
+        load_quotations();
     </script>
 </body>
 
