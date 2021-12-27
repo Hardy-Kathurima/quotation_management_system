@@ -13,7 +13,7 @@ if (isset($_POST['itemId'])) {
     $itemId = $_POST['itemId'];
     $found = false;
     foreach ($_SESSION['add_item'] as $key => $value) {
-        if ($value['itemId'] == $itemId) {
+        if ($value['itemId'] == $_POST['itemId']) {
             $value['quantity'] += 1;
             $found = true;
             break;
