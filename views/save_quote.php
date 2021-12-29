@@ -8,6 +8,8 @@ if (isset($_GET['customer']) && isset($_GET['phone']) && isset($_GET["location"]
     $location = $_GET['location'];
     $quotation = $_GET['quotation'];
     $ref = $_GET["ref"];
+    $customerData = $_GET['customerData'];
+    $allDetails = json_decode($customerData);
 }
 
 
@@ -35,20 +37,30 @@ $pdf->Cell(40, 10, "Quantity", 0, 0, "L");
 $pdf->Cell(40, 10, "Amount", 0, 1, "L");
 
 
-$pdf->Cell(40, 10, "AQUA WATER", 0, 0, "L");
-$pdf->Cell(40, 10, "60", 0, 0, "L");
-$pdf->Cell(40, 10, "2", 0, 0, "L");
-$pdf->Cell(40, 10, "300", 0, 1, "L");
+foreach ($allDetails as $key => $value) {
+    $pdf->Cell(40, 10, $value->itemName, 0, 0, "L");
+    $pdf->Cell(40, 10, $value->itemCost, 0, 0, "L");
+    $pdf->Cell(40, 10, $value->quantity, 0, 0, "L");
+    $pdf->Cell(40, 10, $value->itemCost * $value->quantity, 0, 1, "L");
+}
 
-$pdf->Cell(40, 10, "BULK WATER", 0, 0, "L");
-$pdf->Cell(40, 10, "60", 0, 0, "L");
-$pdf->Cell(40, 10, "5", 0, 0, "L");
-$pdf->Cell(40, 10, "700", 0, 1, "L");
+
 
 $pdf->Ln(2);
 
+
+$total_price = 0;
+$total_delivery = 0;
+$total_additional = 0;
+foreach ($allDetails as $key => $value) {
+    $total_delivery = $total_delivery + $value->deliveryCost;
+    $total_additional = $total_additional + $value->additionalCost;
+    $total_price = $total_price + $total_delivery + $total_additional + $value->quantity * $value->itemCost + $value->deliveryCost + $value->additionalCost;
+}
+
+
 $pdf->Cell(50, 30, "TOTAL", 0, 0, "L");
-$pdf->Cell(80, 30, "1,000", 0, 1, "R");
+$pdf->Cell(80, 30, $total_price, 0, 1, "R");
 $pdf->Ln(3);
 
 $pdf->Cell(190, 10, "Served By Toto", 0, 1, "C");

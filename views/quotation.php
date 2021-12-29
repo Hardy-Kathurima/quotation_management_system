@@ -5,6 +5,13 @@ $output = $customerPhone = $location  = null;
 
 
 
+
+
+$data = $_SESSION["add_item"] ?? null;
+
+
+
+
 if (isset($_POST['search_customer'])) {
     if (!empty($_POST['customerName'])) {
         $customerName = $db->real_escape_string($_POST['customerName']);
@@ -464,6 +471,8 @@ if (isset($_POST['search_customer'])) {
             var totalCost = quantity * parseInt($("#itemCost").val());
 
 
+
+
             $.ajax({
                 type: 'post',
                 url: 'addItem.php',
@@ -540,8 +549,11 @@ if (isset($_POST['search_customer'])) {
                 var ref = $("#customerRef").val();
                 var location = $("#customerLocation").val();
                 var quotationNo = Math.floor(Math.random() * 100) + 1;
+                var pdfData = '<?php echo  json_encode($data); ?>';
 
-                var link = `save_quote.php?customer=${custom}&phone=${phone}&location=${location}&quotation=${quotationNo}&ref=${ref}`;
+
+
+                var link = `save_quote.php?customer=${custom}&phone=${phone}&location=${location}&quotation=${quotationNo}&ref=${ref}&customerData=${pdfData}`;
                 $("#savePdf").attr("href", link);
 
 
