@@ -334,7 +334,7 @@ if (isset($_POST['search_customer'])) {
     <script>
         $(function() {
 
-
+            load_quotations();
 
 
             // search customer
@@ -588,7 +588,6 @@ if (isset($_POST['search_customer'])) {
             }
 
         }
-        load_quotations();
     </script>
 </body>
 

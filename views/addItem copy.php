@@ -14,7 +14,7 @@ if (isset($_POST['itemId'])) {
     $found = false;
     foreach ($_SESSION['add_item'] as $key => $value) {
         if ($value['itemId'] == $itemId) {
-            $_SESSION["add_item"][$key]["quantity"] += 1;
+            $_SESSION["add_item"][$value["quantity"]]++;
             $found = true;
             break;
         }
