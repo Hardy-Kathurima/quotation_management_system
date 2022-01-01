@@ -7,7 +7,7 @@ $output = $customerPhone = $location  = null;
 
 
 
-$data = $_SESSION["add_item"] ?? null;
+$data = $_SESSION["add_item"];
 
 
 
